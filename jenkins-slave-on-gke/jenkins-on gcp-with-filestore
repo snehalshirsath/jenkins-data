@@ -1,0 +1,34 @@
+sudo apt-get -y update
+sudo mkdir /var/lib/jenkins/
+
+create nfs in filestore using console (use default vpc for clear mounting)
+cd /var/lib/jenkins/
+ls
+cd ~
+
+sudo apt-get install nfs-common -y
+sudo mount 172.27.151.186:/fileshare_Snehal /var/lib/jenkins
+sudo chmod go+rw /var/lib/jenkins
+
+sudo apt update
+sudo apt install default-jre -y
+sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins -y
+
+
+user data to add at the creation on instance template:
+
+sudo mount <ip-address:/file-share> /var/lib/jenkins
+sudo chmod go+rw /var/lib/jenkins
+sudo service jenkins stop
+sudo service jenkins restart
+
+
+UserData:
+
+sudo mount 172.27.151.186:/fileshare_Snehal /var/lib/jenkins
+sudo chmod go+rw /var/lib/jenkins
+sudo service jenkins stop
+sudo service jenkins restart
