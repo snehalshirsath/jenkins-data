@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: machineinfo
+  name: machineinfo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: machineinfo
+  template:
+    metadata:
+      labels:
+        app: machineinfo
+    spec:
+      containers:
+      - image: <registry-host-ip>:5000/snehal/firstimage:1
+        imagePullPolicy: Always
+        name: machineinfo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: machineinfo
+  name: machineinfo
+spec:
+  ports:
+  - nodePort: 30303
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: machineinfo
+  type: NodePort
