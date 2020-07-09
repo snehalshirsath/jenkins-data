@@ -1,4 +1,10 @@
 pipeline {
+    
+    environment {
+    registry = "<docker-hub-repo-url>"
+    dockerImage = ""
+  }
+    
     agent {
         docker {
             image 'maven:3-alpine'
