@@ -1,0 +1,19 @@
+pipeline{
+    agent { label 'kubepod' } //pod template label
+    
+    stages{
+        stage('fetch'){
+            steps{
+                git branch: 'master', url: 'https://github.com/snehalshirsath/devops-machineinfo-repo.git'
+            }
+        }
+        stage('deploy'){
+            steps{
+               dir("jenkins-eks-connection"){
+               //kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kube-config-deploy")
+               sh 'kubectl apply -f deploy-demo.yaml'
+            }
+			}
+        }
+    }
+}
