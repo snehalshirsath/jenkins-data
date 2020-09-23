@@ -10,8 +10,8 @@ pipeline{
         stage('deploy'){
             steps{
                dir("jenkins-eks-connection"){
-               //kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kube-config-deploy")
-               sh 'kubectl apply -f deploy-demo.yaml'
+               //kubernetesDeploy(configs: "machineinfo-deployment.yaml", kubeconfigId: "final-kubeconfig")
+               sh 'kubectl apply -f machineinfo-deployment.yaml'
             }
 			}
         }
