@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machineinfo-deployment
+  labels:
+    app: machineinfo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: machineinfo-app
+  template:
+    metadata:
+      labels:
+        app: machineinfo-app
+    spec:
+      containers:
+        - name: machineinfo-container
+          image: nehashirsat/devops_repo:v1.1.0
+          ports:
+             - name: http      
+               containerPort: 9000
+               protocol: TCP 
+          readinessProbe:
+           httpGet:
+            path: /machineinfo
+            port: 9000
