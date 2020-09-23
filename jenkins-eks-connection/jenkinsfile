@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('fetch'){
             steps{
-                git branch: 'master', url: 'https://github.com/snehalshirsath/devops-machineinfo-repo.git'
+                git branch: 'master', url: 'https://github.com/snehalshirsath/jenkins-data.git'
             }
         }
         stage('deploy'){
