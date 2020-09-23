@@ -11,7 +11,7 @@ pipeline{
             steps{
                dir("jenkins-eks-connection"){
                //kubernetesDeploy(configs: "machineinfo-deployment.yaml", kubeconfigId: "final-kubeconfig")
-               sh 'kubectl apply -f machineinfo-deployment.yaml'
+               sh 'kubectl apply -f machineinfo-deployment.yaml -n jenkins'
             }
 			}
         }
